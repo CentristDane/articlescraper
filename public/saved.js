@@ -1,8 +1,11 @@
-$.getJSON("/saved", function(data) {
+$.getJSON("/articles", function(data) {
+	console.log(data);
+
   // For each one
   for (var i = 0; i < data.length; i++) {
-    // Display the apropos information on the page
+   if (data[i].saved){
     $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
+ }
   }
 });
 
@@ -80,15 +83,19 @@ $(document).on("click", "#savearticle", function() {
 
   // Run a POST request to change the note, using what's entered in the inputs
   $.ajax({
-    method: "POST",
-    url: "/saved/" + thisId,
+    method: "UPDATE",
+    url: "/articles/" + thisId,
     data: {
-      // Value taken from title input
-      title: "test",
-      // Value taken from note textarea
-      link: "test",
 
-      note: "test"
+    	saved: true
+   //// put saved = true///////////////////
+    	
+      // // Value taken from title input
+      // title: $(this).attr("data.title"),
+      // // Value taken from note textarea
+      // link: "test",
+
+      // note: "test"
     }
   })
     // With that done
