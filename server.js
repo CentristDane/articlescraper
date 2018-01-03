@@ -9,7 +9,7 @@ var path = require('path');
 // It works on the client and on the server
 var axios = require("axios");
 var cheerio = require("cheerio");
-
+var PORT = process.env.PORT || 3000;
 // Require all models
 var db = require("./models");
 
@@ -186,6 +186,6 @@ app.post("/saved/:id", function(req, res) {
 
 
 // Start the server
-app.listen(process.env.PORT || 3000, function() {
+app.listen(PORT, function() {
   console.log("App running on port " + PORT + "!");
 });
